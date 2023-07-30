@@ -46,25 +46,14 @@ class App extends Component {
   };
   handleLoadMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }));
-    //this.scrollToBottom();
   };
-  // scrollToBottom = () => {
-  //   const gallery = document.getElementById('gallery');
-  //   window.scrollTo({
-  //     top: gallery.scrollHeight,
-  //     behavior: 'smooth',
-  //   });
-  // };
 
   render() {
     return (
       <div className={css.App}>
         <Searchbar onSubmit={this.handleSubmit} />
-        {this.state.isLoading ? (
-          <Loader />
-        ) : (
-          <ImageGallery images={this.state.images} id="gallery" />
-        )}
+        {this.state.isLoading && <Loader />}
+        <ImageGallery images={this.state.images} />
         {this.state.loadMore && <Button handleLoadMore={this.handleLoadMore} />}
       </div>
     );
